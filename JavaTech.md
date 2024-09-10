@@ -6,13 +6,30 @@
 * <strong>SpringBoot:</strong> Extencion de Spring Simplifica codigficar y trae configuraciones predeterminadas
 
 * <strong>Herramientas para programar en Java:</strong>
-  * JDK
+  * JDK: Java Development Kit
     * Compilador (javac): convierte .class a bytcode
     * Java Runtime Environment (JRE): proporciona máquina virtual (JVM)
   * IDE
     * InteliJ IDEA
     * Eclipse
     * NetBEans
+
+* <strong>Tecnologias:</strong>
+  * JPA: (Java Persistence API) Es una especificación, una API para ORM
+  * Hibernate: Es una implementación JPA, es un proveedor de JPA, Es el Framework ORM 
+
+* <strong>POO:</strong>
+  * Encapsulamiento,
+  * Herencia
+  * Polimorfismo @Override
+  * Abstraccion
+
+* <strong>Principios SOLID:</strong>
+  * Single Responsibility: clase una única responsabilidad
+  * Open/Closed: clases para extensión, cerradas para modificación.
+  * Liskov Substitution: subclase pueda reemplazar a su superclase 
+  * Interface Segregation: evitar la creación de interfaces "gordas"
+  * Dependency Inversion: Reducir el acoplamiento entre componentes
 
 * <strong>Anotaciones:</strong> son una forma de añadir metadatos a tu código
   * Sirven Para
@@ -74,7 +91,7 @@
 
 * <strong>Caso2: Se cae el Deploy</strong>
   * Importancia del cliente
-  * gravedad del error
+  * Gravedad del error
   * Importancia del requerimiento
   * Tiempo
 
