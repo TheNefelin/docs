@@ -27,7 +27,7 @@ docker container start <CONTAINER ID>
 ```
 
 ### SQL Server Developer
-[download image](https://hub.docker.com/r/microsoft/mssql-server)
+* [download image](https://hub.docker.com/r/microsoft/mssql-server)
 ```
 docker pull mcr.microsoft.com/mssql/server 
 
@@ -35,13 +35,26 @@ docker container create -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=123456" -e "MSS
 
 docker container start <CONTAINER ID>
 ```
+* New SQL User
+```
+```
 
 ### MySQL
-[download image](https://hub.docker.com/_/mysql)
+* [download image](https://hub.docker.com/_/mysql)
 ```
 docker pull mysql
 
 docker run --name MySQL -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306 -d mysql
+```
+* New SQL User
+```
+CREATE DATABASE testing;
+USE testing;
+
+CREATE USER 'testing'@'%' IDENTIFIED BY 'testing';
+GRANT CREATE, ALTER, DROP ON testing.* TO 'testing'@'%';
+GRANT SELECT, INSERT, UPDATE, DELETE ON testing.* TO 'testing'@'%';
+GRANT REFERENCES ON testing.* TO 'testing'@'%';
 ```
 
 ## Docker init
