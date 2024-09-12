@@ -1,6 +1,47 @@
 # Docker
 
-[Download Doker](https://docs.docker.com/)
+[Download Doker](https://docs.docker.com/) <br>
+[Download Doker Images](https://hub.docker.com/)
+
+## Some Commands
+```
+docker ps
+docker ps -a
+docker container start <CONTAINER ID>
+docker container start <CONTAINER ID> -d
+docker container stop <CONTAINER ID>
+docker container rm <CONTAINER ID>
+docker logs <CONTAINER ID>
+```
+
+## Hub public Images
+* Download image
+* Create container
+* Start container
+* -e (environment)
+* -p (ServerPort:DockerPort) (8080:80)
+```
+docker pull <IMAGE>
+docker container create -e <ENVIRONMENT> <IMAGE>
+docker container start <CONTAINER ID>
+```
+
+### SQL Server Developer
+[download image](https://hub.docker.com/r/microsoft/mssql-server)
+```
+docker pull mcr.microsoft.com/mssql/server 
+
+docker container create -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=123456" -e "MSSQL_PID=Developer" -p 1433:1433 --name SQLServer mcr.microsoft.com/mssql/server
+
+docker container start <CONTAINER ID>
+```
+
+
+## Docker init
+```
+docker init
+```
+
 
 ## Dockerfile
 * Create Dockerfile
