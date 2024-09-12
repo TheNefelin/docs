@@ -36,6 +36,13 @@ docker container create -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=123456" -e "MSS
 docker container start <CONTAINER ID>
 ```
 
+### MySQL
+[download image](https://hub.docker.com/_/mysql)
+```
+docker pull mysql
+
+docker run --name MySQL -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306 -d mysql
+```
 
 ## Docker init
 ```
