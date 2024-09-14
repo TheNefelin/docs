@@ -26,17 +26,27 @@ docker container create -e <ENVIRONMENT> <IMAGE>
 docker container start <CONTAINER ID>
 ```
 
-### SQL Server Developer
+### SQL Server
 * [download image](https://hub.docker.com/r/microsoft/mssql-server)
 ```
 docker pull mcr.microsoft.com/mssql/server 
 
-docker container create -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=123456" -e "MSSQL_PID=Developer" -p 1433:1433 --name SQLServer mcr.microsoft.com/mssql/server
+docker container create -e "ACCEPT_EULA=Y" -e "MSSQL_SA_PASSWORD=mysecretpassword" -e "MSSQL_PID=Developer" -p 1433:1433 --name SQLServer mcr.microsoft.com/mssql/server
 
 docker container start <CONTAINER ID>
 ```
 * New SQL User
 ```
+CREATE LOGIN testing WITH PASSWORD = 'testing';
+GO
+CREATE DATABASE db_testing
+GO
+USE db_testing
+GO
+CREATE USER testing FOR LOGIN testing;
+GO
+EXECUTE sp_addrolemember 'db_owner', 'testing';
+GO
 ```
 
 ### MySQL
@@ -44,24 +54,44 @@ docker container start <CONTAINER ID>
 ```
 docker pull mysql
 
-docker run --name MySQL -e MYSQL_ROOT_PASSWORD=123456 -p 3306:3306 -d mysql
+docker run --name MySQL -e MYSQL_ROOT_PASSWORD=mysecretpassword -p 3306:3306 -d mysql
 ```
 * New SQL User
 ```
-CREATE DATABASE testing;
-USE testing;
+CREATE DATABASE db_testing;
+USE db_testing;
 
-CREATE USER 'testing'@'%' IDENTIFIED BY 'testing';
-GRANT CREATE, ALTER, DROP ON testing.* TO 'testing'@'%';
-GRANT SELECT, INSERT, UPDATE, DELETE ON testing.* TO 'testing'@'%';
-GRANT REFERENCES ON testing.* TO 'testing'@'%';
+CREATE USER 'testing'@'%' IDENTIFIED BY 'db_testing';
+GRANT CREATE, ALTER, DROP ON db_testing.* TO 'testing'@'%';
+GRANT SELECT, INSERT, UPDATE, DELETE ON db_testing.* TO 'testing'@'%';
+GRANT REFERENCES ON db_testing.* TO 'testing'@'%';
 ```
+
+### PostgreSQL
+[download image](https://hub.docker.com/_/postgres)
+```
+docker pull postgres
+
+docker run --name PostgreSQL -e POSTGRES_PASSWORD=mysecretpassword -p 5432:5432 -d postgres
+```
+* New SQL User
+```
+CREATE DATABASE db_testing;
+CREATE USER testing WITH PASSWORD 'testing';
+GRANT ALL PRIVILEGES ON DATABASE db_testing TO testing;
+```
+
+## Docker File
+
+<hr>
+<hr>
+<hr>
+<hr>
 
 ## Docker init
 ```
 docker init
 ```
-
 
 ## Dockerfile
 * Create Dockerfile
