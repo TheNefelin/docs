@@ -127,7 +127,10 @@ services:
 ```
 docker compose up --build
 ```
-> [!WARNING] If gets some deploy errors
+
+> [!WARNING]  
+> If gets some deploy errors.
+
 * application.properties 
 * add application.properties
 ```
