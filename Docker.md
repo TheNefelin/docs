@@ -83,8 +83,64 @@ GRANT ALL PRIVILEGES ON DATABASE db_testing TO testing;
 
 ## Docker File
 
-<hr>
-<hr>
+### Java 21 + MySQL + Tomkat 10 + .war
+* Dockerfile
+```
+FROM tomcat:10.1-jdk21
+
+WORKDIR /usr/local/tomcat/webapps/
+
+COPY target/BootcApp-0.0.1-SNAPSHOT.war /usr/local/tomcat/webapps/ROOT.war
+
+EXPOSE 8080
+
+CMD ["catalina.sh", "run"]
+```
+* docker-compose.yml
+```
+services:
+  mysql:
+    image: mysql
+    container_name: mysql_container
+    environment:
+      MYSQL_ROOT_PASSWORD: testing
+      MYSQL_DATABASE: testing
+      MYSQL_USER: testing
+      MYSQL_PASSWORD: testing
+    ports:
+      - '3306:3306'
+
+  app:
+    build: .
+    container_name: java_app_container
+    ports:
+      - '8080:8080'
+    depends_on:
+      - mysql
+    environment:
+      SPRING_DATASOURCE_URL: jdbc:mysql://mysql:3306/testing
+      SPRING_DATASOURCE_USERNAME: testing
+      SPRING_DATASOURCE_PASSWORD: testing
+```
+
+* Build and run
+```
+docker compose up --build
+```
+> [!WARNING] If gets some deploy errors
+* application.properties 
+* add application.properties
+```
+mvn clean
+mvn install
+
+# Server Configuration
+server.servlet.context-path=
+server.port=8080
+```
+
+
+
 <hr>
 <hr>
 
