@@ -45,7 +45,6 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      MY_VAR:
       MY_VAR1: probando variable 1
       MY_VAR2: probando variable 2
 
