@@ -22,10 +22,16 @@ jobs:
   otro:
     runs-on: ubuntu-latest
     needs: [primerjob]
-    
+
     steps:
     - name: Checkout
       uses: actions/checkout@v4.1.7
                 
     - name: LS
       run: ls -al
+
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v4.0.4
+            
+    - name: Node Version
+      run: node --version
