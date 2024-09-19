@@ -14,9 +14,10 @@
 
 ## YAML
 * test.yaml or test.yml
-* name: nombre representativo
+* name: nombre del workflow
 * on [?]: es un evento
 * jobs: son el workflow
+* primerjob y otro: nombre de jobs
 * runs-on: especificar SO
 * steps: ejecutar diferentes acciones
 * run: permite ejecutar comandos
@@ -26,11 +27,18 @@ name: Prueba
 on: [push]
 
 jobs: 
-  primerjob: //nombre del jon
+  primerjob:
     runs-on: ubuntu-latest
 
     steps:
     - name: nombre
       run: echo "Esto es una Prueba"
+
+  otro:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: LS
+      run: ls -al
 ```
 
