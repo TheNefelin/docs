@@ -40,3 +40,16 @@ jobs:
     steps:
     - name: Setup Node.js environment
       uses: actions/setup-node@v4.0.4
+
+  secret:
+    runs-on: ubuntu-latest
+
+    env:
+      MY_VAR1: variable 1
+      MY_VAR2: variable 2
+
+    steps:
+      - name: var1
+        run: |
+          echo "$MY_VAR1"
+          echo "$MY_VAR2"
