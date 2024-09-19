@@ -13,42 +13,118 @@
 6. Runner: entorno de ejecucion de Jobs.
 
 ## YAML
+
+### Basic Structure
+```
+name: action name
+
+on: [event o trigger]
+
+jobs:
+  my-job-1:
+    runs-on: operating-system
+
+    steps:
+      - name: step-1
+        run: cmd-command
+
+      - name: step-2
+        uses: some-actions
+
+      - name: step-3
+        uses: some-actions
+        with:
+          action-var1: VARIABLE_1
+          action-var2: "${{ vars.MY_VAR }}" 
+          action-var3: "${{ secrets.MY_SECRET }}"
+
+  my-job-2:
+    runs-on: operating-system
+    needs: [my-job-1] # opcional depends on other job
+
+  my-job-3:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql
+        env:
+          MYSQL_ROOT_PASSWORD: testing
+          MYSQL_DATABASE: db_testing
+        ports: 
+          - 3306:3306
+      
+```
+
 * test.yaml or test.yml
 * name: nombre del workflow
 * on [?]: es un evento o trigger
 * jobs: son el workflow
-* primerjob y otro: nombre de jobs
+* local-action, database, node y secret: nombre de jobs
 * runs-on: especificar SO
 * steps: ejecutar diferentes acciones
 * run: permite ejecutar comandos
 * needs: ejecuta los jobs en serie, si no esta se ejecutan en paralelo
+
+### main.yml + action.yml
 ```
-name: Prueba
+name: Test Composite Action
 
 on: [push]
 
-jobs: 
-  primerjob:
+jobs:
+  local-action:
     runs-on: ubuntu-latest
 
     steps:
-    - name: primer paso
-      run: echo "Esto es una Prueba"
+    - name: Checkout
+      uses: actions/checkout@v4.1.7
 
-    - name: touch file
-      run: touch hola.txt
-
-    - name: Set text
-      run: echo "Texto de Contenido" >> hola.txt
-
-    - name: Read file
-      run: cat hola.txt
-
-  otro:
-    runs-on: ubuntu-latest
-    needs: [primerjob]
-    steps:
-    - name: LS
+    - name: ls
       run: ls -al
+
+    - name: my-action
+      uses: ./.github/actions/my-action
+      with: 
+        message: "Probando Variables"
+    
+  database:
+    runs-on: ubuntu-latest
+
+    services:
+      mysql:
+        image: mysql
+        env:
+          MYSQL_ROOT_PASSWORD: testing
+        ports: 
+          - 3306:3306
+
+    steps:
+    - name: ls
+      run: ls
+
+  node:
+    runs-on: ubuntu-latest
+    needs: [database]
+
+    steps:
+    - name: Setup Node.js environment
+      uses: actions/setup-node@v4.0.4
+
+  secret:
+    runs-on: ubuntu-latest
+
+    env:
+      MY_VAR1: probando variable 1
+      MY_VAR2: probando variable 2
+
+    steps:
+      - name: env var
+        run: |
+          echo "$MY_VAR1"
+          echo "$MY_VAR2"
+          echo "${{ vars.MY_VAR }}"
+          echo "${{ secrets.MY_SECRET }}"
 ```
 
+## Workflow for CI/CD
