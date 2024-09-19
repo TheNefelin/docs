@@ -7,8 +7,17 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: nombre
+    - name: primer paso
       run: echo "Esto es una Prueba"
+
+    - name: touch file
+      run: touch hola.txt
+
+    - name: Set text
+      run: echo "Texto de Contenido" >> hola.txt
+
+    - name: Read file
+      run: cat hola.txt
 
   otro:
     runs-on: ubuntu-latest
