@@ -16,6 +16,8 @@ jobs:
         message: "Probando Variables"
     
   database:
+    runs-on: ubuntu-latest
+
     services:
       mysql:
         image: mysql
