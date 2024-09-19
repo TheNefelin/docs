@@ -11,6 +11,9 @@ jobs:
       uses: actions/checkout@v4.1.7
 
     - name: ls
+      run: ls -al
+
+    - name: my-action
       uses: ./.github/actions/my-action
       with: 
         message: "Probando Variables"
@@ -35,11 +38,5 @@ jobs:
     needs: [database]
 
     steps:
-    - name: Checkout
-      uses: actions/checkout@v4.1.7
-                
-    - name: LS
-      run: ls -al
-
     - name: Setup Node.js environment
       uses: actions/setup-node@v4.0.4
