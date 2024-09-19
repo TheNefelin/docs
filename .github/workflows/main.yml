@@ -45,11 +45,13 @@ jobs:
     runs-on: ubuntu-latest
 
     env:
-      MY_VAR1: variable 1
-      MY_VAR2: variable 2
+      MY_VAR:
+      MY_VAR1: probando variable 1
+      MY_VAR2: probando variable 2
 
     steps:
-      - name: var1
+      - name: env var
         run: |
+          echo "${{ vars.MY_VAR }}"
           echo "$MY_VAR1"
           echo "$MY_VAR2"
