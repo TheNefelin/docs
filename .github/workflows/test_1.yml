@@ -10,3 +10,9 @@ jobs:
     - name: nombre
       run: echo "Esto es una Prueba"
 
+  otro:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: LS
+      run: ls -al
