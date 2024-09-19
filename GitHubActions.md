@@ -21,6 +21,7 @@
 * runs-on: especificar SO
 * steps: ejecutar diferentes acciones
 * run: permite ejecutar comandos
+* needs: ejecuta los jobs en serie, si no esta se ejecutan en paralelo
 ```
 name: Prueba
 
@@ -31,12 +32,21 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - name: nombre
+    - name: primer paso
       run: echo "Esto es una Prueba"
+
+    - name: touch file
+      run: touch hola.txt
+
+    - name: Set text
+      run: echo "Texto de Contenido" >> hola.txt
+
+    - name: Read file
+      run: cat hola.txt
 
   otro:
     runs-on: ubuntu-latest
-
+    needs: [primerjob]
     steps:
     - name: LS
       run: ls -al
