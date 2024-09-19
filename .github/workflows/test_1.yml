@@ -1,0 +1,12 @@
+name: Prueba
+
+on: [push]
+
+jobs: 
+  primerjob: //nombre del jon
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: nombre
+      run: echo "Esto es una Prueba"
+      
