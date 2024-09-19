@@ -15,3 +15,10 @@ jobs:
       with: 
         message: "Probando Variables"
     
+  database:
+    services:
+      mysql:
+        image: mysql
+        env:
+          MYSQL_ROOT_PASSWORD: testing
+        ports: 3306:3306
