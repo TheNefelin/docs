@@ -10,7 +10,6 @@ jobs:
     - name: Checkout
       uses: actions/checkout@v4.1.7
 
-    steps:
     - name: ls
       uses: ./.github/actions/my-action
     
