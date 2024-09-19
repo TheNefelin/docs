@@ -28,6 +28,4 @@ jobs:
 
     steps:
     - name: ls
-      uses: ./.github/actions/my-action
-      with: 
-        message: "Instalando MySQL"
+      run: ls
