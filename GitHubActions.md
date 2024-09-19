@@ -1,8 +1,8 @@
 # GitHub Actions Integracion Continua
 
-* Actions es similar a Pipeline (DevObs)
-* Archivos jenkins
-* Workflow y Steps
+* [Doc Events or Trigger](https://docs.github.com/es/actions/writing-workflows/choosing-when-your-workflow-runs/events-that-trigger-workflows)
+* [Doc GitHub Actions](https://docs.github.com/es)
+* [GitHub Actions](https://github.com/marketplace?type=actions)
 
 ## Conceptos
 1. Workflow: archivo YAML que ejecuta acciones segun eventos.
@@ -15,7 +15,7 @@
 ## YAML
 * test.yaml or test.yml
 * name: nombre del workflow
-* on [?]: es un evento
+* on [?]: es un evento o trigger
 * jobs: son el workflow
 * primerjob y otro: nombre de jobs
 * runs-on: especificar SO
