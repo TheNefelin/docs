@@ -128,3 +128,7 @@ jobs:
 ```
 
 ## Workflow for CI/CD
+* Instalar paquetes
+* Ejecutar pruebas
+* Condicionales
+* Debug
