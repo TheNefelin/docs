@@ -37,7 +37,16 @@ docker container start <CONTAINER ID>
 ```
 * New SQL User
 ```
-CREATE LOGIN testing WITH PASSWORD = 'testing';
+SELECT 
+	NAME AS LoginName, 
+	TYPE_DESC AS AccountType, 
+	create_date, 
+	modify_date,
+	TYPE
+FROM sys.server_principals
+WHERE TYPE IN ('S', 'U', 'G');
+GO
+CREATE LOGIN testing WITH PASSWORD = 'testing', CHECK_POLICY = OFF;
 GO
 CREATE DATABASE db_testing
 GO
@@ -45,8 +54,7 @@ USE db_testing
 GO
 CREATE USER testing FOR LOGIN testing;
 GO
-EXECUTE sp_addrolemember 'db_owner', 'testing';
-GO
+EXEC sp_addrolemember 'db_owner', 'testing';
 ```
 
 ### MySQL
