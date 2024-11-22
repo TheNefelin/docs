@@ -69,7 +69,7 @@ docker run --name MySQL -e MYSQL_ROOT_PASSWORD=mysecretpassword -p 3306:3306 -d 
 CREATE DATABASE db_testing;
 USE db_testing;
 
-CREATE USER 'testing'@'%' IDENTIFIED BY 'db_testing';
+CREATE USER 'testing'@'%' IDENTIFIED BY 'testing';
 GRANT CREATE, ALTER, DROP ON db_testing.* TO 'testing'@'%';
 GRANT SELECT, INSERT, UPDATE, DELETE ON db_testing.* TO 'testing'@'%';
 GRANT REFERENCES ON db_testing.* TO 'testing'@'%';
